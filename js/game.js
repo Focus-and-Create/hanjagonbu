@@ -291,13 +291,39 @@ const GameEngine = (() => {
     speakChinese(word.char);
   }
 
+  let voiceGuideSeen = false;
+
   function speakChinese(char) {
     if (!window.speechSynthesis) return;
-    speechSynthesis.cancel();
-    const utt = new SpeechSynthesisUtterance(char);
-    utt.lang = 'zh-CN';
-    utt.rate = 0.8;
-    speechSynthesis.speak(utt);
+
+    function doSpeak(voices) {
+      const voice = voices.find(v => v.lang.startsWith('zh'));
+      if (!voice) {
+        if (!voiceGuideSeen) { voiceGuideSeen = true; showVoiceGuide(); }
+        return;
+      }
+      speechSynthesis.cancel();
+      const utt = new SpeechSynthesisUtterance(char);
+      utt.voice = voice;
+      utt.lang = voice.lang;
+      utt.rate = 0.8;
+      speechSynthesis.speak(utt);
+    }
+
+    const voices = speechSynthesis.getVoices();
+    if (voices.length > 0) {
+      doSpeak(voices);
+    } else {
+      speechSynthesis.onvoiceschanged = () => {
+        speechSynthesis.onvoiceschanged = null;
+        doSpeak(speechSynthesis.getVoices());
+      };
+    }
+  }
+
+  function showVoiceGuide() {
+    const el = document.getElementById('overlay-voice-guide');
+    if (el) el.classList.remove('hidden');
   }
 
   function showToast(msg) {
@@ -366,6 +392,10 @@ const GameEngine = (() => {
 
     document.getElementById('overlay-huneum').addEventListener('click', () => {
       document.getElementById('overlay-huneum').classList.add('hidden');
+    });
+
+    document.getElementById('btn-voice-guide-close').addEventListener('click', () => {
+      document.getElementById('overlay-voice-guide').classList.add('hidden');
     });
 
     start();
