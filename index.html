@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
+  <title>한자공부</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── 시작 화면 ──────────────────────────────────────── -->
+  <section id="screen-start">
+    <h1 class="game-title">한자공부</h1>
+    <p class="subtitle">가랑비처럼 한자를 익히세요</p>
+
+    <div class="mode-picker">
+      <button class="mode-btn active" data-mode="typing">타이핑 모드</button>
+      <button class="mode-btn" data-mode="matching">매칭 모드</button>
+    </div>
+
+    <p id="start-stage"></p>
+
+    <div class="stage-progress-wrap">
+      <div id="stage-progress-label"></div>
+      <div class="progress-track">
+        <div id="stage-progress-bar"></div>
+      </div>
+    </div>
+
+    <div class="start-stats" id="start-stats"></div>
+
+    <button id="btn-start" class="btn-primary">시작하기</button>
+  </section>
+
+  <!-- ── 게임 화면 ──────────────────────────────────────── -->
+  <section id="screen-game" class="hidden">
+    <header class="game-header">
+      <div class="hud-block">
+        <span class="hud-label">점수</span>
+        <span class="hud-value" id="score-value">0</span>
+      </div>
+      <div class="hud-block">
+        <span class="hud-label">연속</span>
+        <span class="hud-value">
+          <span id="combo-value">0</span>
+          <span id="combo-mult" data-tier="base">×1</span>
+        </span>
+      </div>
+      <span id="stage-label" style="font-size:0.82rem;color:var(--muted);margin-left:auto;"></span>
+      <button id="btn-pause" class="btn-icon" title="일시정지">⏸</button>
+    </header>
+
+    <div id="card-grid" class="card-grid"></div>
+
+    <div id="typing-bar">
+      <div id="active-card-preview" title="현재 카드"></div>
+      <input id="answer-input" type="text" autocomplete="off"
+             autocorrect="off" autocapitalize="none" spellcheck="false"
+             placeholder="음을 입력하세요 (예: 산)">
+      <button id="btn-submit" class="btn-submit">확인</button>
+    </div>
+  </section>
+
+  <!-- ── 결과 화면 ──────────────────────────────────────── -->
+  <section id="screen-result" class="hidden">
+    <h2 class="result-title">이번 세션</h2>
+
+    <div class="result-grid">
+      <div class="result-cell">
+        <div class="label">정답</div>
+        <div class="value" id="result-correct">0</div>
+      </div>
+      <div class="result-cell">
+        <div class="label">오답</div>
+        <div class="value" id="result-wrong">0</div>
+      </div>
+      <div class="result-cell">
+        <div class="label">정확도</div>
+        <div class="value" id="result-accuracy">-</div>
+      </div>
+      <div class="result-cell">
+        <div class="label">최고 연속</div>
+        <div class="value" id="result-combo">0</div>
+      </div>
+    </div>
+
+    <div class="result-cell" style="width:min(360px,90vw);text-align:center;">
+      <div class="label">획득 점수</div>
+      <div class="value" id="result-score">0</div>
+    </div>
+
+    <p class="result-label">이번에 완전 습득한 한자</p>
+    <div class="mastered-row" id="result-mastered"></div>
+
+    <div class="result-buttons">
+      <button id="btn-resume" class="btn-primary">계속하기</button>
+      <button id="btn-home"   class="btn-secondary">처음으로</button>
+    </div>
+  </section>
+
+  <!-- ── 훈음 오버레이 ───────────────────────────────────── -->
+  <div id="overlay-huneum" class="hidden">
+    <div class="huneum-box">
+      <div class="huneum-char"></div>
+      <div class="huneum-reading"></div>
+      <div class="huneum-example"></div>
+    </div>
+  </div>
+
+  <!-- ── 토스트 컨테이너 ─────────────────────────────────── -->
+  <div id="toast-container"></div>
+
+  <script src="js/words.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/game.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => GameEngine.init());
+  </script>
+</body>
+</html>
