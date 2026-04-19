@@ -379,6 +379,9 @@ body::before {
 .huneum-reading { font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-top: 0.3rem; }
 .huneum-example { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
 
+.voice-guide-box { max-width: min(320px, 90vw); pointer-events: all; }
+.voice-guide-text { font-size: 0.85rem; color: var(--text); line-height: 1.75; text-align: left; margin-top: 0.3rem; }
+
 /* ── Result Screen ───────────────────────────────────────────── */
 #screen-result {
   gap: 1.2rem;
