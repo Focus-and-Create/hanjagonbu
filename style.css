@@ -135,6 +135,9 @@ body::before {
 #screen-game {
   justify-content: flex-start; padding-top: 0;
   gap: 0;
+  height: 100dvh;
+  min-height: unset;
+  overflow: hidden;
 }
 
 .game-header {
@@ -180,14 +183,14 @@ body::before {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  gap: 0.6rem;
-  padding: 0.7rem;
+  gap: 0.5rem;
+  padding: 0.6rem;
   width: 100%; max-width: 720px;
   flex: 1;
+  min-height: 0;
 }
 
 .card {
-  aspect-ratio: 1;
   background: var(--surface);
   backdrop-filter: var(--glass);
   border: 1.5px solid var(--border);
