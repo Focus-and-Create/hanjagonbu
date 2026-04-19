@@ -183,6 +183,9 @@ const GameEngine = (() => {
       if (progress.mastered && !gameState.newlyMastered.includes(card.wordId)) {
         gameState.newlyMastered.push(card.wordId);
         showToast(`✨ ${wordById(card.wordId).char} 완전 습득!`);
+        Sound.mastered();
+      } else {
+        Sound.correct();
       }
 
       [prevCard, card].forEach(c => {
@@ -203,6 +206,7 @@ const GameEngine = (() => {
       Storage.addScore(-5);
       gameState.sessionWrong++;
       updateHUD();
+      Sound.wrong();
 
       [prevCard, card].forEach(c => {
         if (!c) return;
@@ -287,6 +291,16 @@ const GameEngine = (() => {
     overlay.classList.remove('hidden');
     if (huneumTimer) clearTimeout(huneumTimer);
     huneumTimer = setTimeout(() => overlay.classList.add('hidden'), 1200);
+    speakChinese(word.char);
+  }
+
+  function speakChinese(char) {
+    if (!window.speechSynthesis) return;
+    speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(char);
+    utt.lang = 'zh-CN';
+    utt.rate = 0.8;
+    speechSynthesis.speak(utt);
   }
 
   function showToast(msg) {
