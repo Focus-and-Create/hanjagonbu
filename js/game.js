@@ -130,7 +130,6 @@ const GameEngine = (() => {
       const label = p.matchType === 'hanja' ? word.char : word.eum;
       el.innerHTML = `<div class="card-inner">
         <div class="card-hanja match-label">${label}</div>
-        <div class="card-grade">${word.grade}급</div>
       </div>`;
 
       el.addEventListener('click', () => onMatchCardClick(instanceId));
@@ -349,9 +348,7 @@ const GameEngine = (() => {
 
   function init() {
     Storage.load();
-    renderStartScreen();
 
-    document.getElementById('btn-start').addEventListener('click', start);
     document.getElementById('btn-pause').addEventListener('click', pause);
     document.getElementById('btn-resume').addEventListener('click', resume);
     document.getElementById('btn-home').addEventListener('click', goHome);
@@ -359,6 +356,8 @@ const GameEngine = (() => {
     document.getElementById('overlay-huneum').addEventListener('click', () => {
       document.getElementById('overlay-huneum').classList.add('hidden');
     });
+
+    start();
   }
 
   function start() {
@@ -395,8 +394,7 @@ const GameEngine = (() => {
 
   function goHome() {
     gameState.paused = false;
-    renderStartScreen();
-    showScreen('screen-start');
+    start();
   }
 
   return { init };

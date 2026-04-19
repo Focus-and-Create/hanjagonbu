@@ -298,6 +298,19 @@ body::before {
 /* Match card label (shows eum text) */
 .match-label { font-size: clamp(1rem, 3vw, 1.8rem) !important; }
 
+/* 한자 카드: 흰색 계열 / 한글 카드: 초록 계열 */
+.match-card[data-match-type="hanja"] {
+  background: rgba(255,255,255,0.88);
+  border-color: rgba(180,210,190,0.6);
+}
+.match-card[data-match-type="eum"] {
+  background: rgba(195,235,205,0.65);
+  border-color: rgba(60,160,90,0.4);
+}
+.match-card[data-match-type="eum"][data-state="unanswered"] .card-hanja {
+  color: #1a5a30;
+}
+
 /* ── Typing Bar ──────────────────────────────────────────────── */
 #typing-bar {
   width: 100%; max-width: 720px;
