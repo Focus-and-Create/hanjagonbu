@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
   <title>한자공부</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,11 +15,6 @@
   <section id="screen-start">
     <h1 class="game-title">한자공부</h1>
     <p class="subtitle">가랑비처럼 한자를 익히세요</p>
-
-    <div class="mode-picker">
-      <button class="mode-btn active" data-mode="typing">타이핑 모드</button>
-      <button class="mode-btn" data-mode="matching">매칭 모드</button>
-    </div>
 
     <p id="start-stage"></p>
 
@@ -56,13 +50,6 @@
 
     <div id="card-grid" class="card-grid"></div>
 
-    <div id="typing-bar">
-      <div id="active-card-preview" title="현재 카드"></div>
-      <input id="answer-input" type="text" autocomplete="off"
-             autocorrect="off" autocapitalize="none" spellcheck="false"
-             placeholder="음을 입력하세요 (예: 산)">
-      <button id="btn-submit" class="btn-submit">확인</button>
-    </div>
   </section>
 
   <!-- ── 결과 화면 ──────────────────────────────────────── -->
