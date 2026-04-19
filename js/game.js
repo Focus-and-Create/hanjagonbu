@@ -291,6 +291,16 @@ const GameEngine = (() => {
     overlay.classList.remove('hidden');
     if (huneumTimer) clearTimeout(huneumTimer);
     huneumTimer = setTimeout(() => overlay.classList.add('hidden'), 1200);
+    speakChinese(word.char);
+  }
+
+  function speakChinese(char) {
+    if (!window.speechSynthesis) return;
+    speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(char);
+    utt.lang = 'zh-CN';
+    utt.rate = 0.8;
+    speechSynthesis.speak(utt);
   }
 
   function showToast(msg) {
