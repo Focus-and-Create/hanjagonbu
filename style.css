@@ -1,7 +1,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:        #f2faf4;
+  --bg:        #f7faf8;
   --surface:   rgba(255,255,255,0.75);
   --border:    rgba(80,170,110,0.35);
   --primary:   #2e9e4f;
@@ -28,7 +28,7 @@ body {
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: -1;
-  background: linear-gradient(135deg, #e4f7e8 0%, #f2faf4 40%, #d8f2e0 80%, #e4f7e8 100%);
+  background: linear-gradient(135deg, #f2f7f3 0%, #f9fbf9 40%, #edf5ef 80%, #f2f7f3 100%);
   background-size: 400% 400%;
   animation: gradientShift 18s ease infinite;
 }
@@ -179,7 +179,7 @@ body::before {
 .card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   gap: 0.6rem;
   padding: 0.7rem;
   width: 100%; max-width: 720px;

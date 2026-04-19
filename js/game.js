@@ -101,7 +101,7 @@ const GameEngine = (() => {
     gameState.activeCards = [];
     gameState.selectedMatchCard = null;
 
-    const pool = getUniqueEumBatch(8);
+    const pool = getUniqueEumBatch(10);
     const pairs = [];
     pool.forEach(id => {
       pairs.push({ wordId: id, matchType: 'hanja' });
