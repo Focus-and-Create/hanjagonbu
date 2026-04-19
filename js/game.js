@@ -183,9 +183,6 @@ const GameEngine = (() => {
       if (progress.mastered && !gameState.newlyMastered.includes(card.wordId)) {
         gameState.newlyMastered.push(card.wordId);
         showToast(`✨ ${wordById(card.wordId).char} 완전 습득!`);
-        Sound.mastered();
-      } else {
-        Sound.correct();
       }
 
       [prevCard, card].forEach(c => {
