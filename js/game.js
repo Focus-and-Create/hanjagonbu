@@ -283,6 +283,7 @@ const GameEngine = (() => {
     const overlay = document.getElementById('overlay-huneum');
     if (!overlay) return;
     overlay.querySelector('.huneum-char').textContent    = word.char;
+    overlay.querySelector('.huneum-pinyin').textContent  = word.pinyin;
     overlay.querySelector('.huneum-reading').textContent = word.hun + ' ' + word.eum;
     overlay.querySelector('.huneum-example').textContent = word.example + ' · ' + word.example_meaning;
     overlay.classList.remove('hidden');

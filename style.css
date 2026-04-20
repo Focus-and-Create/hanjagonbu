@@ -376,7 +376,8 @@ body::before {
 }
 
 .huneum-char    { font-size: 3.5rem; font-weight: 800; color: var(--text); line-height: 1; }
-.huneum-reading { font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-top: 0.3rem; }
+.huneum-pinyin  { font-size: 1.1rem; font-weight: 500; color: var(--primary); margin-top: 0.25rem; letter-spacing: 0.03em; }
+.huneum-reading { font-size: 1rem; font-weight: 600; color: var(--muted); margin-top: 0.15rem; }
 .huneum-example { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
 
 .voice-guide-box { max-width: min(320px, 90vw); pointer-events: all; }
